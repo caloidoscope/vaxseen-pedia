@@ -1,0 +1,34 @@
+  spring:
+    jpa:
+
+      hibernate:
+        ddl-auto: update  # or 'create', 'create-drop', 'validate', 'none'
+      show-sql: true
+      properties:
+        org.hibernate.envers.audit_table_suffix: _aud
+        org.hibernate.envers.revision_field_name: rev
+        org.hibernate.envers.revision_type_field_name: rev_type
+        org.hibernate.envers.default_schema: public
+        hibernate:
+          format_sql: true
+    datasource:
+      url: jdbc:h2:mem:vaxseen_db
+      driver-class-name: org.h2.Driver
+      username: sa
+      password:
+    h2:
+      console:
+        enabled: true
+  server:
+    port: 8080
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: beans
+
+  logging:
+    level:
+      org.springdoc: DEBUG
+      org.springframework.web: DEBUG
